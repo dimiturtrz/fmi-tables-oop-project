@@ -5,7 +5,7 @@ class BaseFileHandler {
 protected:	
 	std::fstream file;
 
-	void interpretInput(const char* input);
+	bool interpretInput(const char* input);
 	void open(const char* path);
 	void close();
 	void save();

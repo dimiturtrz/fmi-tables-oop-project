@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 
+#include "MyStrings.h"
 #include "BaseFileHandler.h"
 
 // file part
@@ -22,13 +23,13 @@ void BaseFileHandler::exit() {
 
 // console interpretation part
 bool BaseFileHandler::interpretInput(const char* input) {
-	
+
 }
 
 void BaseFileHandler::startGettingInput() {
-	char* buffer[512];
+	char buffer[512];
 	while(true) {
-		std::getline(std::cin, buffer);
+		std::cin.getline(buffer, 511);
 		interpretInput(buffer);
 	}
 }

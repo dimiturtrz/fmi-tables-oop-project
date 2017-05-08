@@ -1,2 +1,2 @@
-basetable: BaseFileHandler.cpp main.cpp
-	g++ -o basetable BaseFileHandler.cpp main.cpp -I.
+basetable: MyStrings.cpp BaseFileHandler.cpp main.cpp
+	g++ -o basetable MyStrings.cpp BaseFileHandler.cpp main.cpp -I.
