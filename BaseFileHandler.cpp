@@ -7,6 +7,10 @@
 // file part
 void BaseFileHandler::open(const char* path) {
 	file.open(path);
+	if(file.fail()) {
+		std::cout<< "opening file failed"<< std::endl;
+		file.clear();
+	}
 }
 void BaseFileHandler::close() {
 	file.close();
