@@ -6,16 +6,17 @@ protected:
 	std::fstream file;
 	bool gettingInput;
 
-	bool interpretInput(const char* command, const char* arguments);
-	void open(const char* path);
-	void close();
-	void save();
-	void saveas(const char* path);
+	virtual bool interpretInput(const char* command, const char* arguments);
+
+	virtual bool open(const char* path);
+	virtual void close();
+	virtual void save() = 0;
+	virtual bool saveas(const char* path) = 0;
 	void exit();
 public:
 	void startGettingInput();
 	// only destructor to make sure the file is closed
-	~BaseFileHandler(); 
+	virtual ~BaseFileHandler(); 
 };
 
 #endif

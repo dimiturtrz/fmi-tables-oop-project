@@ -5,22 +5,20 @@
 #include "BaseFileHandler.h"
 
 // file part
-void BaseFileHandler::open(const char* path) {
+bool BaseFileHandler::open(const char* path) {
 	file.open(path);
 	if(file.fail()) {
 		std::cout<< "opening file failed"<< std::endl;
 		file.clear();
+		return false;
 	}
+	return true;
 }
+
 void BaseFileHandler::close() {
 	file.close();
 }
-void BaseFileHandler::save() {
-	
-}
-void BaseFileHandler::saveas(const char* path) {
-	
-}
+
 void BaseFileHandler::exit() {
 	gettingInput = false;
 }
@@ -37,7 +35,10 @@ bool BaseFileHandler::interpretInput(const char* command, const char* arguments)
 		save();
 	} else if(strcmp(command, "saveas") == 0) {
 		saveas(arguments + sizeof(char));
+	} else {
+		return false;
 	}
+	return true;
 }
 
 void BaseFileHandler::startGettingInput() {
@@ -47,7 +48,9 @@ void BaseFileHandler::startGettingInput() {
 	while(gettingInput) {
 		std::cin>> command;
 		std::cin.getline(arguments, 511);
-		interpretInput(command, arguments);
+		if(!interpretInput(command, arguments)) {
+			std::cout<< "\""<< command<< "\" is an invalid command\n";
+		}
 	}
 }
 

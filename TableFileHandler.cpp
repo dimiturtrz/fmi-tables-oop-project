@@ -1,0 +1,63 @@
+#include <iostream>
+#include <fstream>
+
+#include "MyStrings.h"
+#include "BaseFileHandler.h"
+#include "TableFileHandler.h"
+
+//input stuff
+bool TableFileHandler::interpretInput(const char* command, const char* arguments) {
+	if(strcmp(command, "print") == 0) {
+		print();
+	} else if(strcmp(command, "edit") == 0) {
+		edit(arguments);
+	} else {
+		return BaseFileHandler::interpretInput(command, arguments);
+	}
+	return true;
+}
+
+//file stuff
+bool TableFileHandler::open(const char* path) {
+	if(!BaseFileHandler::open(path)) {
+		return false;
+	}
+
+	populateTable();
+	return true;
+}
+
+void TableFileHandler::save() {
+	writeTableToStream(file);
+}
+
+bool TableFileHandler::saveas(const char* path) {
+	std::fstream newFile;
+	newFile.open(path, std::ios::out | std::ios::trunc);
+	if(newFile.fail()) {
+		std::cout<< "opening file failed"<< std::endl;
+		newFile.clear();
+		return false;
+	}
+	writeTableToStream(newFile);
+	newFile.close();
+	return false;
+}
+
+void TableFileHandler::print() {
+	
+}
+
+void TableFileHandler::edit(const char* arguments) {
+	
+}
+
+//other stuff
+void TableFileHandler::populateTable() {
+
+}
+
+void TableFileHandler::writeTableToStream(std::fstream& stream) {
+
+}
+

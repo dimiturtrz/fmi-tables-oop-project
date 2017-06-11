@@ -2,10 +2,11 @@
 #include <fstream>
 
 #include "BaseFileHandler.h"
+#include "TableFileHandler.h"
 #include "MyStrings.h"
 
 int main () {
-	BaseFileHandler bh;
-	bh.startGettingInput();
+	TableFileHandler th;
+	th.startGettingInput();
 	return 0;
 }
