@@ -33,24 +33,24 @@ bool isDigit(char ch) {
 
 bool readInt(const char* str, char endSym, int& intHolder, int* lengthRead) {
 	int i = 0;
-	for(; str[i] == ' ' && endSym != ' '; ++i);
+	for(; str[i] == ' '; ++i);
 	bool sign = true;
 	if(str[i] == '-') {
 		++i;
 		sign = false;
 	}
 	int number = 0;
-	int digitTens = 1;
-	for(;str[i] != endSym && str != '\0'; i++) {
+	for(;str[i] != endSym && str[i] != '\n' && str[i] != '\0'; i++) {
 		if(isDigit(str[i])) {
-			number *= digitTens;
-			number += str[i] - '0'; 
-			digitTens *= 10;
+			number *= 10;
+			number += str[i] - '0';
 		} else {
 			return false;
 		}
 	}
 	intHolder = number;
-	*lengthRead = i;
+	if(lengthRead != NULL) {
+		*lengthRead = i;
+	}
 	return true;
 }

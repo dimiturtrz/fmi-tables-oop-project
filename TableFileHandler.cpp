@@ -48,9 +48,14 @@ void TableFileHandler::print() {
 }
 
 void TableFileHandler::edit(const char* arguments) {
-	const char* reader = arguments;
-	
-	//table.edit(row, col, newContent);
+	int row = 0, col = 0;
+	int endOne = 0, endTwo = 0;
+	if(!readInt(arguments, ' ', row, &endOne) || !readInt(arguments + endOne, ' ', col, &endTwo)) {
+		std::cout<< "wrong input form (it is not that complicated)"<< std::endl;
+	}
+	for(; arguments[endTwo] == ' '; ++endTwo);
+	const char* newContent = arguments + endTwo;
+	table.edit(row, col, newContent);
 }
 
 //other stuff

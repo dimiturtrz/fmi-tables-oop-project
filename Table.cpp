@@ -51,7 +51,7 @@ void Table::writeToStream(std::fstream& stream) {
 void Table::print() {
 	//writeToStream(std::cout);
 }
-void Table::edit(int row, int col, char* newContent) {
+void Table::edit(int row, int col, const char* newContent) {
 	//rows[row].setCell(col, newContent);
 }
 

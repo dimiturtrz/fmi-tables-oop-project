@@ -17,7 +17,7 @@ public:
 	void writeToStream(std::fstream& stream);
 
 	void print();
-	void edit(int row, int col, char* newContent);
+	void edit(int row, int col, const char* newContent);
 
 	~Table();
 };

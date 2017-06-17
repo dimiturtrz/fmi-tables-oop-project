@@ -9,7 +9,6 @@ void strcpy(const char* destination, char* source);
 int strcmp(const char* str1, const char* str2);
 
 bool isDigit(char ch);
-// TODO fix
-int readInt(const char* strIterator, char endSym, int& intHolder, int* lengthRead = NULL);
+bool readInt(const char* str, char endSym, int& intHolder, int* lengthRead = NULL);
 
 #endif
