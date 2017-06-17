@@ -1,8 +1,12 @@
+#include "Table.h"
+
 #ifndef TABLE_FILE_HANDLER
 #define TABLE_FILE_HANDLER
 
 class TableFileHandler: public BaseFileHandler {
 private:
+	Table table;
+
 	virtual bool interpretInput(const char* command, const char* arguments);
 
 	virtual bool open(const char* path);
@@ -11,7 +15,7 @@ private:
 	void print();	
 	void edit(const char* arguments);
 
-	void populateTable();
+	bool populateTable();
 	void writeTableToStream(std::fstream& stream); 
 };
 

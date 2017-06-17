@@ -1,12 +1,12 @@
 #include "MyStrings.h"
 
 int strlen(const char* str) {
-	int len = 0;
-	for(; str[len] != '\0'; len++);
-	return len;
+	int i = 0;
+	for(; str[i] != '\0'; ++i);
+	return i;
 }
 
-void strcpy(char* destination,const char* source) {
+void strcpy(char* destination, const char* source) {
 	for(int i=0; source[i] != '\0'; i++) {
 		destination[i] = source[i];
 	}
@@ -25,4 +25,32 @@ int strcmp(const char* str1, const char* str2) {
 		return 0;
 	}
 	return (strlen(str1) > strlen(str2)) ? 1 : -1;
+}
+
+bool isDigit(char ch) {
+	return ch >= '0' && ch <= '9';
+}
+
+bool readInt(const char* str, char endSym, int& intHolder, int* lengthRead) {
+	int i = 0;
+	for(; str[i] == ' ' && endSym != ' '; ++i);
+	bool sign = true;
+	if(str[i] == '-') {
+		++i;
+		sign = false;
+	}
+	int number = 0;
+	int digitTens = 1;
+	for(;str[i] != endSym && str != '\0'; i++) {
+		if(isDigit(str[i])) {
+			number *= digitTens;
+			number += str[i] - '0'; 
+			digitTens *= 10;
+		} else {
+			return false;
+		}
+	}
+	intHolder = number;
+	*lengthRead = i;
+	return true;
 }

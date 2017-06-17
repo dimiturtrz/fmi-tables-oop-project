@@ -23,8 +23,7 @@ bool TableFileHandler::open(const char* path) {
 		return false;
 	}
 
-	populateTable();
-	return true;
+	return populateTable();
 }
 
 void TableFileHandler::save() {
@@ -45,19 +44,21 @@ bool TableFileHandler::saveas(const char* path) {
 }
 
 void TableFileHandler::print() {
-	
+	table.print();
 }
 
 void TableFileHandler::edit(const char* arguments) {
+	const char* reader = arguments;
 	
+	//table.edit(row, col, newContent);
 }
 
 //other stuff
-void TableFileHandler::populateTable() {
-
+bool TableFileHandler::populateTable() {
+	return table.populateFromStream(file);
 }
 
 void TableFileHandler::writeTableToStream(std::fstream& stream) {
-
+	table.writeToStream(stream);
 }
 
