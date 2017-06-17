@@ -2,56 +2,30 @@
 #include <fstream>
 
 #include "Table.h"
-
-// --------------------- BIG FOUR -------------------------
-Table::Table()/*: rows(NULL)*/ {}
-
-Table::Table(const Table& other) {
-	/*rowsCount = other.rowsCount;
-	delete [] rows;
-	rows = new Row[rowsCount];
-	for(int i = 0; i<rowsCount; i++) {
-		rows[i] = other.rows[i];
-	}*/
-}
-
-Table& Table::operator=(const Table& other) {
-	if(this != &other) {
-		/*rowsCount = other.rowsCount;
-		delete [] rows;
-		rows = new Row[rowsCount];
-		for(int i = 0; i<rowsCount; i++) {
-			rows[i] = other.rows[i];
-		}*/
-	}
-
-	return *this;
-}
-
-Table::~Table() {
-	//delete [] rows;
-}
+#include "Row.h"
 
 // ------------------- FILE METHODS -----------------------
 
 bool Table::populateFromStream(std::fstream& stream) {
 	char buffer[1024];
 	while(stream.getline(buffer, 1024)) {
-		
+		rows.add(Row(buffer));
 	}
 }
 
 void Table::writeToStream(std::fstream& stream) {
-	/*for(int i = 0; i < rowsCount; i++) {
+	for(int i = 0; i < rows.getSize(); i++) {
 		rows[i].writeToStream(stream);
-	} */
+	}
 }
 
 // ------------------- INTERFACE METHODS ------------------
 void Table::print() {
-	//writeToStream(std::cout);
+	for(int i = 0; i < rows.getSize(); i++) {
+		rows[i].print();
+	}
 }
 void Table::edit(int row, int col, const char* newContent) {
-	//rows[row].setCell(col, newContent);
+	rows[row].setCell(col, newContent);
 }
 

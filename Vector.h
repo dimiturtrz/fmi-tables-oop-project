@@ -79,7 +79,7 @@ public:
 		elements[size++] = newElement;
 	}
 
-	void getSize() {
+	int getSize() {
 		return size;
 	}
 };
