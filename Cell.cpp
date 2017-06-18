@@ -18,3 +18,7 @@ Cell& Cell::operator=(const Cell& other) {
 	}
 	return *this;
 }
+
+Cell::~Cell() {
+	delete [] cellString;
+}

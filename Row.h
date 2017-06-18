@@ -2,8 +2,8 @@
 #include<fstream>
 
 #include "Cell.h"
-#include "MyStrings.h"
-#include "Vector.h"
+#include "helpers/MyStrings.h"
+#include "helpers/Vector.h"
 
 #ifndef ROW
 #define ROW
@@ -24,6 +24,7 @@ public:
 
 private:
 	bool readCellStr(const char* start, char* buffer, int* length = NULL);
+	Cell* getCell(const char* cellContent);
 };
 
 #endif

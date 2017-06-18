@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 
-#include "MyStrings.h"
+#include "helpers/MyStrings.h"
 #include "BaseFileHandler.h"
 #include "TableFileHandler.h"
 

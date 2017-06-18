@@ -3,7 +3,7 @@
 
 #include "BaseFileHandler.h"
 #include "TableFileHandler.h"
-#include "MyStrings.h"
+#include "helpers/MyStrings.h"
 
 int main () {
 	TableFileHandler th;
