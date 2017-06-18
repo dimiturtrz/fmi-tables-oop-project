@@ -1,15 +1,22 @@
 #include<iostream>
 #include<fstream>
 
+#include "Cell.h"
+#include "MyStrings.h"
+#include "Vector.h"
+
 #ifndef ROW
 #define ROW
 
 class Row {
-	//Vector<Cell> cells;
+	Vector<Cell*> cells;
 
 public:
 	Row();
 	Row(char* rowStr);
+	Row(const Row& other);
+	Row& operator=(const Row& other);
+	~Row();
 
 	void writeToStream(std::fstream& stream);
 	void print();

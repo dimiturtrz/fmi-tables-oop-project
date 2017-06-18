@@ -7,29 +7,44 @@ Row::Row(char* rowStr) {
 	int offset = 0;
 	while(readCellStr(reader, buffer, &offset)) {
 		reader += offset;
-		//cells.add(buffer);
+		//Cell* newCell = new Cell(buffer); // cell of type
+		//cells.add(newCell);
+	}
+}
+Row::Row(const Row& other) {
+	cells = other.cells;
+	for(int i=0; i<cells.getSize(); i++) {
+		cells[i] = cells[i]->clone();
+	}
+}
+Row& Row::operator=(const Row& other) {
+	if(this != &other) {
+		cells = other.cells;
+		for(int i=0; i<cells.getSize(); i++) {
+			cells[i] = cells[i]->clone();
+		}
+	}
+	return *this;
+}
+Row::~Row() {
+	for(int i=0; i<cells.getSize(); i++) {
+		delete cells[i];
 	}
 }
 
 void Row::writeToStream(std::fstream& stream) {
-	/*
 	for(int i=0; i< cells.getSize(); ++i) {
-		cells[i].writeToStream(stream);
+		cells[i]->writeToStream(stream);
 	}
-	*/
 }
 void Row::print() {
-	/*
 	for(int i=0; i< cells.getSize(); ++i) {
-		cells[i].print();
+		cells[i]->print();
 	}
 	std::cout<< std::endl;
-	*/
 }
 void Row::setCell(int col, const char* newContent) {
-	/*
-		cells[col] = Cell(newContent);
-	*/
+	cells[col]->setContent(newContent);
 }
 
 

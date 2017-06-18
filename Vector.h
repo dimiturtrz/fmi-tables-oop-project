@@ -6,6 +6,7 @@
 
 template<typename T>
 class Vector {
+protected:
 	T* elements;
 	int size;
 	int capacity;

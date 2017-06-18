@@ -5,7 +5,7 @@
 
 //standart
 int strlen(const char* str);
-void strcpy(const char* destination, char* source);
+void strcpy(char* destination, const char* source);
 int strcmp(const char* str1, const char* str2);
 
 bool isDigit(char ch);
