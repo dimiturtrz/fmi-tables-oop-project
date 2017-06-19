@@ -12,6 +12,7 @@ private:
 public:
 	bool populateFromStream(std::fstream& stream);
 	void writeToStream(std::fstream& stream);
+	void reset();
 
 	void print();
 	void edit(int row, int col, const char* newContent);

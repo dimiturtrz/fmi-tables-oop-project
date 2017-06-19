@@ -80,6 +80,13 @@ public:
 		elements[size++] = newElement;
 	}
 
+	void reset() {
+		delete [] elements;
+		size = 0;
+		capacity = 5;
+		elements = new T[capacity];
+	}
+
 	int getSize() {
 		return size;
 	}

@@ -29,3 +29,7 @@ void Table::edit(int row, int col, const char* newContent) {
 	rows[row].setCell(col, newContent);
 }
 
+void Table::reset() {
+	rows.reset();
+}
+

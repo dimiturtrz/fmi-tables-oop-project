@@ -43,6 +43,11 @@ bool TableFileHandler::saveas(const char* path) {
 	return false;
 }
 
+void TableFileHandler::close() {
+	BaseFileHandler::close();
+	table.reset();
+}
+
 void TableFileHandler::print() {
 	table.print();
 }

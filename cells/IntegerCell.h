@@ -10,9 +10,6 @@ public:
 	IntegerCell(const char* initialCellString);
 
 	virtual Cell* clone();
-
-	virtual void writeToStream(std::fstream& stream);
-	virtual void print();
 };
 
 #endif

@@ -1,3 +1,4 @@
+#include<iostream>
 #include "Cell.h"
 
 Cell::Cell(const char* initialCellString): cellString(NULL) {
@@ -21,4 +22,12 @@ Cell& Cell::operator=(const Cell& other) {
 
 Cell::~Cell() {
 	delete [] cellString;
+}
+
+void Cell::writeToStream(std::fstream& stream) {
+	stream<< cellString;
+}
+
+void Cell::print() {
+	std::cout<< cellString;
 }

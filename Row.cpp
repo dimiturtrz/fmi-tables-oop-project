@@ -45,11 +45,18 @@ Row::~Row() {
 
 void Row::writeToStream(std::fstream& stream) {
 	for(int i=0; i< cells.getSize(); ++i) {
+		if(i != 0) {
+			stream<< ", "; 		
+		}
 		cells[i]->writeToStream(stream);
 	}
+	stream<< std::endl;
 }
 void Row::print() {
 	for(int i=0; i< cells.getSize(); ++i) {
+		if(i != 0) {
+			std::cout<< ", "; 		
+		}
 		cells[i]->print();
 	}
 	std::cout<< std::endl;
@@ -61,13 +68,16 @@ void Row::setCell(int col, const char* newContent) {
 
 //----------------------- ROW STRING METHODS -------------------
 bool Row::readCellStr(const char* start, char* buffer, int* len) {
+	if(*start == '\0'){
+		return false;
+	}
 	int i = 0;
 	for(; start[i] != ',' && start[i] != '\0'; ++i) {
 		buffer[i] = start[i];
 	}
 	buffer[i] = '\0';
-	*len = ++i;
-	return *start != '\0';
+	*len = start[i] == ',' ? i + 1 : i;
+	return true;
 }
 
 // black magic, do not touch

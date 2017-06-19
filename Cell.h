@@ -1,3 +1,5 @@
+#include<iostream>
+#include<fstream>
 #include "helpers/MyStrings.h"
 
 #ifndef CELL
@@ -15,8 +17,8 @@ public:
 
 	virtual Cell* clone() = 0;
 
-	virtual void writeToStream(std::fstream& stream) = 0;
-	virtual void print() = 0;
+	virtual void writeToStream(std::fstream& stream);
+	virtual void print();
 
 };
 
