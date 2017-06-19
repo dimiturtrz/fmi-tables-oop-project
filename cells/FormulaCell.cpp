@@ -2,10 +2,7 @@
 #include "FormulaCell.h"
 
 FormulaCell::FormulaCell(const char* initialCellString): Cell(initialCellString) {
-	char* reader = cellString;
-	for(; *reader != ' '; ++reader);
-	*reader = '\0';
-	// interpret int
+	// interpret formula
 }
 
 Cell* FormulaCell::clone() {
