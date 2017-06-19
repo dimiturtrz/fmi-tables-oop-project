@@ -10,7 +10,8 @@ DoubleCell::DoubleCell(const char* initialCellString): Cell(initialCellString) {
 	double number = 0;
 	int exp = 1;
 	bool afterDecimalPoint = false;
-	for(i = (cellString[0] == '-') ? 1 : 0; cellString[i] != '\0'; i++) {
+	i = (cellString[0] == '-' || cellString[0] == '+') ? 1 : 0;
+	for(; cellString[i] != '\0'; i++) {
 		if(cellString[i] == '.') {
 			afterDecimalPoint = true;		
 		} else {

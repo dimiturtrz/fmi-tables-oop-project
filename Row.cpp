@@ -94,7 +94,7 @@ Cell* Row::getCell(const char* cellContent) {
 	
 	bool isInteger = true;
 	bool isDouble = true;
-	int i = (reader[0] == '-' && reader[1] != '\0' && isDigit(reader[1])) ? 1 : 0;
+	int i = ((reader[0] == '-' || reader[0] == '+') && reader[1] != '\0' && isDigit(reader[1])) ? 1 : 0;
 	for(; reader[i] != '\0' && (isDigit(reader[i]) || reader[i] == '.'); ++i) {
 		if(reader[i] == '.') {
 			isInteger ? isInteger = false : isDouble = false;

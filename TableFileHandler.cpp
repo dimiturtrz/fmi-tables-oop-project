@@ -22,12 +22,16 @@ bool TableFileHandler::open(const char* path) {
 	if(!BaseFileHandler::open(path)) {
 		return false;
 	}
-
+	
 	return populateTable();
 }
 
-void TableFileHandler::save() {
-	writeTableToStream(file);
+bool TableFileHandler::save() {
+	file.close();
+	if(!saveas(currFilePath)) {
+		return false;
+	}
+	return open(currFilePath);
 }
 
 bool TableFileHandler::saveas(const char* path) {
@@ -58,9 +62,9 @@ void TableFileHandler::edit(const char* arguments) {
 	if(!readInt(arguments, ' ', row, &endOne) || !readInt(arguments + endOne, ' ', col, &endTwo) && row >= 0 && col >= 0) {
 		std::cout<< "wrong input form (it is not that complicated)"<< std::endl;
 	}
-	for(; arguments[endTwo] == ' '; ++endTwo);
-	const char* newContent = arguments + endTwo;
-	table.edit(row, col, newContent);
+	for(; arguments[endOne + endTwo] == ' '; ++endTwo);
+	const char* newContent = arguments + endOne + endTwo;
+	table.edit(row - 1, col - 1, newContent);
 }
 
 //other stuff

@@ -10,7 +10,7 @@ private:
 	virtual bool interpretInput(const char* command, const char* arguments);
 
 	virtual bool open(const char* path);
-	virtual void save();
+	virtual bool save();
 	virtual bool saveas(const char* path);
 	virtual void close();
 	void print();	

@@ -12,6 +12,8 @@ bool BaseFileHandler::open(const char* path) {
 		file.clear();
 		return false;
 	}
+	currFilePath = new char[strlen(path)];
+	strcpy(currFilePath, path);
 	return true;
 }
 
@@ -57,5 +59,6 @@ void BaseFileHandler::startGettingInput() {
 // just-in-case destructor
 BaseFileHandler::~BaseFileHandler() {
 	close();
+	delete [] currFilePath;
 }
 

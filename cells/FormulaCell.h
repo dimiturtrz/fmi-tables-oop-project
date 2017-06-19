@@ -4,6 +4,8 @@
 #define FORMULA_CELL
 
 class FormulaCell: public Cell {
+private:
+	Cell* cells;
 public:
 	FormulaCell(const char* initialCellString);
 
