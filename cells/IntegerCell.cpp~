@@ -3,6 +3,7 @@
 
 IntegerCell::IntegerCell(const char* initialCellString): Cell(initialCellString) {
 	int i = 0;
+	std::cout<< "\n\n\n\niiiiinnntttt\n\n\n"<< std::endl;
 	for(; cellString[i] != ' ' && cellString[i] != '\0'; ++i);
 	cellString[i] = '\0';
 

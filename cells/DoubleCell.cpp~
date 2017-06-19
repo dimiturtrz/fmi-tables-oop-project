@@ -23,6 +23,7 @@ DoubleCell::DoubleCell(const char* initialCellString): Cell(initialCellString) {
 	}
 
 	doubleVal = sign ? number/exp : -(number/exp);
+	std::cout<< "\n\n\n\n" << doubleVal<< "\n\n\n\n";
 }
 
 Cell* DoubleCell::clone() {
