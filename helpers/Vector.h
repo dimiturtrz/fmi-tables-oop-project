@@ -18,7 +18,7 @@ public:
 		return this->elements[index];
 	}
 
-	T& operator[](int index) {
+	T& operator[](int index) const {
 		if(index >= this->size) {
 			throw std::out_of_range("Index out of bounds");
 		}

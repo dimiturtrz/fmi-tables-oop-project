@@ -16,6 +16,7 @@ public:
 	virtual ~Cell();
 
 	virtual Cell* clone() = 0;
+	virtual double evaluate() = 0;
 
 	virtual void writeToStream(std::fstream& stream);
 	virtual void print();

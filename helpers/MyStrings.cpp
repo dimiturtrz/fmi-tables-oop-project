@@ -30,6 +30,9 @@ int strcmp(const char* str1, const char* str2) {
 bool isDigit(char ch) {
 	return ch >= '0' && ch <= '9';
 }
+bool isOperator(char ch) {
+	return ch == '+' || ch == '-' || ch == '*' || ch == '/';
+}
 
 bool readInt(const char* str, char endSym, int& intHolder, int* lengthRead) {
 	int i = 0;

@@ -20,3 +20,7 @@ IntegerCell::IntegerCell(const char* initialCellString): Cell(initialCellString)
 Cell* IntegerCell::clone() {
 	return new IntegerCell(*this);
 }
+
+double IntegerCell::evaluate() {
+	return intVal;
+}

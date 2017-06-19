@@ -29,3 +29,7 @@ DoubleCell::DoubleCell(const char* initialCellString): Cell(initialCellString) {
 Cell* DoubleCell::clone() {
 	return new DoubleCell(*this);
 }
+
+double DoubleCell::evaluate() {
+	return doubleVal;
+}

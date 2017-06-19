@@ -66,7 +66,7 @@ public:
 		elements = new T[capacity];
 	}
 
-	int getSize() {
+	int getSize() const {
 		return size;
 	}
 };

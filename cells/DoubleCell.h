@@ -10,6 +10,7 @@ public:
 	DoubleCell(const char* initialCellString);
 
 	virtual Cell* clone();
+	virtual double evaluate();
 };
 
 #endif

@@ -9,7 +9,7 @@
 template<typename T>
 class Stack: public Container<T> {
 public:
-	void push_back(const T& element) {
+	void push_back(const T& newElement) {
 		if(this->size >= this->capacity) {
 			this->expand();
 		}
@@ -20,12 +20,12 @@ public:
 		if(this->size >= 0) {
 			throw std::out_of_range("No elements in stack");
 		}
-		T element = this->elements[--size];
-		if(this->size =< this->capacity/2) {
+		T element = this->elements[--this->size];
+		if(this->size <= this->capacity/2) {
 			this->shrink();
 		}
 		return this->element;
 	}
 };
 
-#endif STACK
+#endif

@@ -1,4 +1,5 @@
 #include "Row.h"
+#include "Table.h"
 #include "helpers/MyStrings.h"
 #include "cells/IntegerCell.h"
 #include "cells/DoubleCell.h"
@@ -6,20 +7,20 @@
 #include "cells/FormulaCell.h"
 
 // ------------------- BIG FOUR ---------------------
-Row::Row() {}
+Row::Row(): delegate(NULL) {}
 
-Row::Row(char* rowStr) {
+Row::Row(char* rowStr, const Table* delegate): delegate(delegate) {
 	char* reader = rowStr;
 	char buffer[1024];
 	int offset = 0;
 	while(readCellStr(reader, buffer, &offset)) {
 		reader += offset;
-		Cell* newCell = getCell(buffer);
+		Cell* newCell = makeCell(buffer);
 		cells.add(newCell);
 	}
 }
 
-Row::Row(const Row& other) {
+Row::Row(const Row& other): delegate(other.delegate) {
 	cells = other.cells;
 	for(int i=0; i<cells.getSize(); i++) {
 		cells[i] = cells[i]->clone();
@@ -43,7 +44,7 @@ Row::~Row() {
 }
 // ------------------- FILE MEHODS ----------------
 
-void Row::writeToStream(std::fstream& stream) {
+void Row::writeToStream(std::fstream& stream) const {
 	for(int i=0; i< cells.getSize(); ++i) {
 		if(i != 0) {
 			stream<< ", "; 		
@@ -52,7 +53,7 @@ void Row::writeToStream(std::fstream& stream) {
 	}
 	stream<< std::endl;
 }
-void Row::print() {
+void Row::print() const {
 	for(int i=0; i< cells.getSize(); ++i) {
 		if(i != 0) {
 			std::cout<< ", "; 		
@@ -62,12 +63,12 @@ void Row::print() {
 	std::cout<< std::endl;
 }
 void Row::setCell(int col, const char* newContent) {
-	cells[col] = getCell(newContent);
+	cells[col] = makeCell(newContent);
 }
 
 
 //----------------------- ROW STRING METHODS -------------------
-bool Row::readCellStr(const char* start, char* buffer, int* len) {
+bool Row::readCellStr(const char* start, char* buffer, int* len) const {
 	if(*start == '\0'){
 		return false;
 	}
@@ -80,8 +81,12 @@ bool Row::readCellStr(const char* start, char* buffer, int* len) {
 	return true;
 }
 
+Cell* Row::getCell(int col) const {
+	return cells[col];
+}
+
 // black magic, do not touch
-Cell* Row::getCell(const char* cellContent) {
+Cell* Row::makeCell(const char* cellContent) const {
 	const char* reader = cellContent;
 	for(; *reader == ' '; ++reader);
 
@@ -89,7 +94,7 @@ Cell* Row::getCell(const char* cellContent) {
 		return new StringCell("");
 	}
 	if(*reader == '=') {
-		return new FormulaCell(reader);
+		return new FormulaCell(reader, delegate);
 	}
 	
 	bool isInteger = true;
