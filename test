@@ -1,2 +1,2 @@
 pesho, cell2, -5, -6.5
-cell3, cell04, cell5, = R1C3 + R1C4
+cell3, cell04, cell5, = R1C3 / R1C4

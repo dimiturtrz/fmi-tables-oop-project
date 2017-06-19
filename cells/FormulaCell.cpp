@@ -40,11 +40,21 @@ double FormulaCell::evaluate() {
 }
 
 void FormulaCell::writeToStream(std::fstream& stream) {
-	stream<< evaluate();
+	double op2 = tableDelegate->getCell(row2 - 1, col2 - 1)->evaluate();
+	if(sign == '/' && op2 == 0) {
+		stream<< "ERROR";
+	} else {
+		stream<< evaluate();
+	}
 }
 
 void FormulaCell::print() {
-	std::cout<< evaluate();
+	double op2 = tableDelegate->getCell(row2 - 1, col2 - 1)->evaluate();
+	if(sign == '/' && op2 == 0) {
+		std::cout<< "ERROR";
+	} else {
+		std::cout<< evaluate();
+	}
 }
 
 void FormulaCell::getCell(const char* str, int& end, int& cRow, int& cCol) {
