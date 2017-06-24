@@ -96,7 +96,7 @@ void FormulaCell::readCell(const char* str, int& end, int& cRow, int& cCol) {
 double FormulaCell::readConst(const char* reader, int& end) const {
 	char buffer[1024];
 	int i = 0;
-	for(; !isOperator(reader[i]); i++) {
+	for(; reader[i] != '\0' && (i == 0 || !isOperator(reader[i])); i++) {
 		buffer[i] = reader[i];
 	}
 	buffer[i] = '\0';
@@ -104,8 +104,12 @@ double FormulaCell::readConst(const char* reader, int& end) const {
 
 	switch(determineType(buffer)) {
 		case Integer:
+			for(i = 0; buffer[i] != ' ' && buffer[i] != '\0'; ++i);
+			buffer[i] = '\0';
 			return readInt(buffer);
 		case Double:
+			for(i = 0; buffer[i] != ' ' && buffer[i] != '\0'; ++i);
+			buffer[i] = '\0';
 			return readDouble(buffer);
 		case String:
 			return 0;
