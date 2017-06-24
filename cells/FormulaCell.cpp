@@ -2,7 +2,7 @@
 #include "FormulaCell.h"
 #include "../helpers/MyStrings.h"
 
-FormulaCell::FormulaCell(const char* initialCellString, const Table* delegate): Cell(initialCellString), tableDelegate(delegate) {
+FormulaCell::FormulaCell(const char* initialCellString, const TableProtocol* delegate): Cell(initialCellString), tableDelegate(delegate) {
 	const char* reader = initialCellString;
 	
 	int end = 0;

@@ -1,5 +1,6 @@
 #include "Row.h"
 #include "Table.h"
+#include "TableProtocol.h"
 #include "helpers/MyStrings.h"
 #include "cells/IntegerCell.h"
 #include "cells/DoubleCell.h"
@@ -9,7 +10,7 @@
 // ------------------- BIG FOUR ---------------------
 Row::Row(): delegate(NULL) {}
 
-Row::Row(char* rowStr, const Table* delegate): delegate(delegate) {
+Row::Row(char* rowStr, const TableProtocol* delegate): delegate(delegate) {
 	char* reader = rowStr;
 	char buffer[1024];
 	int offset = 0;

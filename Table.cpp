@@ -33,7 +33,7 @@ void Table::reset() {
 	rows.reset();
 }
 
-Cell* Table::getCell(int row, int col) const {
+CellProtocol* Table::getCell(int row, int col) const {
 	return rows[row].getCell(col);
 }
 

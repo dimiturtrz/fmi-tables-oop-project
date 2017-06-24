@@ -1,11 +1,12 @@
 #include<iostream>
 #include<fstream>
+#include "CellProtocol.h"
 #include "helpers/MyStrings.h"
 
 #ifndef CELL
 #define CELL
 
-class Cell {	
+class Cell: public CellProtocol {	
 protected:
 	char* cellString;
 

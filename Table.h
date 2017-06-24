@@ -1,12 +1,13 @@
 #include<fstream>
 #include "helpers/Vector.h"
 #include "Row.h"
-#include "Cell.h"
+#include "CellProtocol.h"
+#include "TableProtocol.h"
 
 #ifndef TABLE
 #define TABLE
 
-class Table {
+class Table: public TableProtocol {
 private:
 	Vector<Row> rows;
 
@@ -17,7 +18,7 @@ public:
 
 	void print() const;
 	void edit(int row, int col, const char* newContent);
-	Cell* getCell(int row, int col) const;
+	CellProtocol* getCell(int row, int col) const;
 };
 
 #endif

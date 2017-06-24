@@ -4,19 +4,18 @@
 #include "Cell.h"
 #include "helpers/MyStrings.h"
 #include "helpers/Vector.h"
+#include "TableProtocol.h"
 
 #ifndef ROW
 #define ROW
 
-class Table;
-
 class Row {
 	Vector<Cell*> cells;
-	const Table* delegate;
+	const TableProtocol* delegate;
 
 public:
 	Row();
-	Row(char* rowStr, const Table* delegate);
+	Row(char* rowStr, const TableProtocol* delegate);
 	Row(const Row& other);
 	Row& operator=(const Row& other);
 	~Row();
