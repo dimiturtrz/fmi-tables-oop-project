@@ -4,7 +4,7 @@
 #include "helpers/MyStrings.h"
 #include "BaseFileHandler.h"
 
-// file part
+// ------------------- FILE METHODS --------------------------
 bool BaseFileHandler::open(const char* path) {
 	file.open(path);
 	if(file.fail()) {
@@ -25,7 +25,7 @@ void BaseFileHandler::exit() {
 	gettingInput = false;
 }
 
-// console interpretation part
+// ------------- CONSOLE INTERPRETATION METHODS --------------
 bool BaseFileHandler::interpretInput(const char* command, const char* arguments) {
 	if(strcmp(command, "open") == 0) {
 		open(arguments + sizeof(char));
@@ -56,7 +56,7 @@ void BaseFileHandler::startGettingInput() {
 	}
 }
 
-// just-in-case destructor
+// --------------------- DESTRUCTOR ---------------------
 BaseFileHandler::~BaseFileHandler() {
 	close();
 	delete [] currFilePath;

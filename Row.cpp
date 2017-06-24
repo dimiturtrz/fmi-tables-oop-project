@@ -1,6 +1,7 @@
 #include "Row.h"
 #include "TableProtocol.h"
 #include "helpers/MyStrings.h"
+#include "helpers/CellUtils.h"
 #include "cells/IntegerCell.h"
 #include "cells/DoubleCell.h"
 #include "cells/StringCell.h"
@@ -89,35 +90,18 @@ Cell* Row::getCell(int col) const {
 	return cells[col];
 }
 
-// black magic, do not touch
 Cell* Row::makeCell(const char* cellContent) const {
 	const char* reader = cellContent;
 	for(; *reader == ' '; ++reader);
 
-	if(*reader == '\0') {
-		return new StringCell("");
-	}
-	if(*reader == '=') {
-		return new FormulaCell(reader, delegate);
-	}
-	
-	bool isInteger = true;
-	bool isDouble = true;
-	int i = ((reader[0] == '-' || reader[0] == '+') && reader[1] != '\0' && isDigit(reader[1])) ? 1 : 0;
-	for(; reader[i] != '\0' && (isDigit(reader[i]) || reader[i] == '.'); ++i) {
-		if(reader[i] == '.') {
-			isInteger ? isInteger = false : isDouble = false;
-		}
-	}
-
-	for(; reader[i] == ' '; ++i);
-	if(reader[i] == '\0') {
-		if(isInteger) {
+	switch(determineType(reader)) {
+		case Integer:
 			return new IntegerCell(reader);
-		} else if(isDouble) {
+		case Double:
 			return new DoubleCell(reader);
-		}
+		case String:
+			return new StringCell(reader);
+		case Formula:
+			return new FormulaCell(reader, delegate);
 	}
-	
-	return new StringCell(reader);
 }

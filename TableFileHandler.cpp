@@ -5,7 +5,7 @@
 #include "BaseFileHandler.h"
 #include "TableFileHandler.h"
 
-//input stuff
+// ----------------------- INPUT --------------------------
 bool TableFileHandler::interpretInput(const char* command, const char* arguments) {
 	if(strcmp(command, "print") == 0) {
 		print();
@@ -17,7 +17,7 @@ bool TableFileHandler::interpretInput(const char* command, const char* arguments
 	return true;
 }
 
-//file stuff
+// ------------------- BASIC FILE METHODS ---------------------
 bool TableFileHandler::open(const char* path) {
 	if(!BaseFileHandler::open(path)) {
 		return false;
@@ -52,6 +52,8 @@ void TableFileHandler::close() {
 	table.reset();
 }
 
+// --------------------- OUTPUT FILE METHODS ------------------
+
 void TableFileHandler::print() {
 	table.print();
 }
@@ -59,7 +61,7 @@ void TableFileHandler::print() {
 void TableFileHandler::edit(const char* arguments) {
 	int row = 0, col = 0;
 	int endOne = 0, endTwo = 0;
-	if(!readInt(arguments, ' ', row, &endOne) || !readInt(arguments + endOne, ' ', col, &endTwo) && row >= 0 && col >= 0) {
+	if(!readGenericInt(arguments, ' ', row, &endOne) || !readGenericInt(arguments + endOne, ' ', col, &endTwo) && row >= 0 && col >= 0) {
 		std::cout<< "wrong input form (it is not that complicated)"<< std::endl;
 	}
 	for(; arguments[endOne + endTwo] == ' '; ++endTwo);
@@ -67,7 +69,7 @@ void TableFileHandler::edit(const char* arguments) {
 	table.edit(row - 1, col - 1, newContent);
 }
 
-//other stuff
+// -------------------- TABLE HANDLER METHODS ----------------
 bool TableFileHandler::populateTable() {
 	return table.populateFromStream(file);
 }

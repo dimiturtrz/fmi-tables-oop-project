@@ -34,7 +34,7 @@ bool isOperator(char ch) {
 	return ch == '+' || ch == '-' || ch == '*' || ch == '/';
 }
 
-bool readInt(const char* str, char endSym, int& intHolder, int* lengthRead) {
+bool readGenericInt(const char* str, char endSym, int& intHolder, int* lengthRead) {
 	int i = 0;
 	for(; str[i] == ' '; ++i);
 	bool sign = true;

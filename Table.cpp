@@ -21,7 +21,7 @@ void Table::writeToStream(std::fstream& stream) const {
 	}
 }
 
-// ------------------- INTERFACE METHODS ------------------
+// ----------------- INTERFACE METHODS -------------------
 void Table::print() const {
 	for(int i = 0; i < rows.getSize(); i++) {
 		rows[i].print();

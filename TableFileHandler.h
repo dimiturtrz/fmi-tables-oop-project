@@ -13,6 +13,7 @@ private:
 	virtual bool save();
 	virtual bool saveas(const char* path);
 	virtual void close();
+
 	void print();	
 	void edit(const char* arguments);
 

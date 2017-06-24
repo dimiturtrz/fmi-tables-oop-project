@@ -11,12 +11,17 @@ private:
 	const TableProtocol* tableDelegate;
 	int row1, col1;
 	int row2, col2;
+	double const1, const2;
 	char sign;
 	//Stack<Cell*> operands;
 	//Stack<char> operations;
 public:
 	FormulaCell(const char* initialCellString, const TableProtocol* delegate);
-	void getCell(const char* str, int& end, int& cRow, int& cCol);
+
+	void readCell(const char* str, int& end, int& row, int& col);
+	double readConst(const char* reader, int& end) const;
+
+	CellProtocol* getCell(int row, int col) const;
 
 	virtual Cell* clone();
 	virtual double evaluate() const;
