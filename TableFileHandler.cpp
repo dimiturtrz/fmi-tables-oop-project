@@ -44,7 +44,8 @@ bool TableFileHandler::saveas(const char* path) {
 	}
 	writeTableToStream(newFile);
 	newFile.close();
-	return false;
+	std::cout<< "table successfully(maybe) saved to "<< path<< std::endl;
+	return true;
 }
 
 void TableFileHandler::close() {
@@ -67,6 +68,7 @@ void TableFileHandler::edit(const char* arguments) {
 	for(; arguments[endOne + endTwo] == ' '; ++endTwo);
 	const char* newContent = arguments + endOne + endTwo;
 	table.edit(row - 1, col - 1, newContent);
+	std::cout<< "the edit function reached it's end without any runtime errors"<< std::endl;
 }
 
 // -------------------- TABLE HANDLER METHODS ----------------

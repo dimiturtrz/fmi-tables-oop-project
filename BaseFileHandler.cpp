@@ -14,11 +14,18 @@ bool BaseFileHandler::open(const char* path) {
 	}
 	currFilePath = new char[strlen(path)];
 	strcpy(currFilePath, path);
+	fileOpened = true;
+	std::cout<< "file did not fail opening"<< std::endl;
 	return true;
 }
 
 void BaseFileHandler::close() {
-	file.close();
+	if(fileOpened) {
+		file.close();
+		std::cout<< "file closed successfully"<< std::endl;
+	}
+	fileOpened = false;
+	std::cout<< "no file opened"<< std::endl;
 }
 
 void BaseFileHandler::exit() {
@@ -56,9 +63,13 @@ void BaseFileHandler::startGettingInput() {
 	}
 }
 
-// --------------------- DESTRUCTOR ---------------------
+// ------------- DESTRUCTOR AND DESTRUCTOR -----------------
+BaseFileHandler::BaseFileHandler(): currFilePath(NULL), fileOpened(false) {}
+
 BaseFileHandler::~BaseFileHandler() {
-	close();
+	if(fileOpened) {
+		file.close();
+	}
 	delete [] currFilePath;
 }
 

@@ -6,6 +6,7 @@ protected:
 	std::fstream file;
 	char* currFilePath;
 	bool gettingInput;
+	bool fileOpened;
 
 	virtual bool interpretInput(const char* command, const char* arguments);
 
@@ -16,7 +17,8 @@ protected:
 	void exit();
 public:
 	void startGettingInput();
-	// only destructor to make sure the file is closed
+	BaseFileHandler();
+	// destructor to make sure the file is closed
 	virtual ~BaseFileHandler(); 
 };
 
