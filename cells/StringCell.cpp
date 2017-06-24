@@ -7,6 +7,6 @@ Cell* StringCell::clone() {
 	return new StringCell(*this);
 }
 
-double StringCell::evaluate() {
+double StringCell::evaluate() const {
 	return 0;
 }

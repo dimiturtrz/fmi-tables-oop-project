@@ -13,7 +13,7 @@ protected:
 	
 // --------------------- BIG FOUR ---------------------
 public:
-	Container(): elements(NULL), size(0), capacity(5) {
+	Container(const int startCap = 5): elements(NULL), size(0), capacity(startCap) {
 		elements = new T[capacity];
 	}
 

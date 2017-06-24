@@ -19,10 +19,10 @@ public:
 	void getCell(const char* str, int& end, int& cRow, int& cCol);
 
 	virtual Cell* clone();
-	virtual double evaluate();
+	virtual double evaluate() const;
 
-	virtual void writeToStream(std::fstream& stream);
-	virtual void print();
+	virtual void writeToStream(std::fstream& stream) const;
+	virtual void print(int width) const;
 };
 
 #endif

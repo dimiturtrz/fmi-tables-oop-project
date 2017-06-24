@@ -3,7 +3,8 @@
 
 class CellProtocol {
 public:	
-	virtual double evaluate() = 0;
+	virtual double evaluate() const = 0;
+	virtual int getStringLength() const = 0;
 };
 
 #endif

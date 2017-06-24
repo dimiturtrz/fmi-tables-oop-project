@@ -11,17 +11,19 @@
 
 class Row {
 	Vector<Cell*> cells;
-	const TableProtocol* delegate;
+	TableProtocol* delegate;
 
 public:
 	Row();
-	Row(char* rowStr, const TableProtocol* delegate);
+	Row(char* rowStr, TableProtocol* delegate);
 	Row(const Row& other);
 	Row& operator=(const Row& other);
 	~Row();
 
 	void writeToStream(std::fstream& stream) const;
 	void print() const;
+
+	int getTotalCells() const;
 	void setCell(int col, const char* newContent);
 	Cell* getCell(int col) const;
 

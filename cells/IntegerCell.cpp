@@ -21,6 +21,6 @@ Cell* IntegerCell::clone() {
 	return new IntegerCell(*this);
 }
 
-double IntegerCell::evaluate() {
+double IntegerCell::evaluate() const {
 	return intVal;
 }

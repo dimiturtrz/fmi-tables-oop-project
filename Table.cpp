@@ -11,6 +11,8 @@ bool Table::populateFromStream(std::fstream& stream) {
 	while(stream.getline(buffer, 1024)) {
 		rows.add(Row(buffer, this));
 	}
+
+	setColumnWidths();
 }
 
 void Table::writeToStream(std::fstream& stream) const {
@@ -35,5 +37,37 @@ void Table::reset() {
 
 CellProtocol* Table::getCell(int row, int col) const {
 	return rows[row].getCell(col);
+}
+
+int Table::getColumnWidth(int column) const {
+	return columnWidths[column];
+}
+
+// ------------------ PRIVATE METHODS ----------------------
+
+void Table::setColumnWidths() {
+	int maxRowLen = 0;
+
+	for(int i = 0; i < rows.getSize(); i++) {
+		int rowCells = rows[i].getTotalCells();
+		if(maxRowLen < rowCells) {
+			maxRowLen = rowCells;
+		}
+	}
+
+	columnWidths = Vector<int>(maxRowLen);
+
+	for(int i = 0; i < maxRowLen; i++) {
+		columnWidths.add(0);
+	}
+
+	for(int i = 0; i < rows.getSize(); i++) {
+		for(int j = 0; j < rows[i].getTotalCells(); j++) {
+			int cellStrLen = getCell(i, j)->getStringLength();
+			if(columnWidths[j] < cellStrLen) {
+				columnWidths[j] = cellStrLen;
+			}
+		}
+	}
 }
 

@@ -8,7 +8,7 @@ public:
 	StringCell(const char* initialCellString);
 
 	virtual Cell* clone();
-	virtual double evaluate();
+	virtual double evaluate() const;
 };
 
 #endif

@@ -1,4 +1,6 @@
 #include<iostream>
+#include<iomanip>
+#include "helpers/MyStrings.h"
 #include "Cell.h"
 
 Cell::Cell(const char* initialCellString): cellString(NULL) {
@@ -24,10 +26,14 @@ Cell::~Cell() {
 	delete [] cellString;
 }
 
-void Cell::writeToStream(std::fstream& stream) {
+void Cell::writeToStream(std::fstream& stream) const {
 	stream<< cellString;
 }
 
-void Cell::print() {
-	std::cout<< cellString;
+void Cell::print(int width) const {
+	std::cout<< std::setw(width)<< cellString;
+}
+
+int Cell::getStringLength() const {
+	return strlen(cellString);
 }

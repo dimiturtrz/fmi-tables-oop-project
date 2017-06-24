@@ -1,5 +1,4 @@
 #include "Row.h"
-#include "Table.h"
 #include "TableProtocol.h"
 #include "helpers/MyStrings.h"
 #include "cells/IntegerCell.h"
@@ -10,7 +9,7 @@
 // ------------------- BIG FOUR ---------------------
 Row::Row(): delegate(NULL) {}
 
-Row::Row(char* rowStr, const TableProtocol* delegate): delegate(delegate) {
+Row::Row(char* rowStr, TableProtocol* delegate): delegate(delegate) {
 	char* reader = rowStr;
 	char buffer[1024];
 	int offset = 0;
@@ -30,6 +29,7 @@ Row::Row(const Row& other): delegate(other.delegate) {
 
 Row& Row::operator=(const Row& other) {
 	if(this != &other) {
+		delegate = other.delegate;
 		cells = other.cells;
 		for(int i=0; i<cells.getSize(); i++) {
 			cells[i] = cells[i]->clone();
@@ -57,9 +57,9 @@ void Row::writeToStream(std::fstream& stream) const {
 void Row::print() const {
 	for(int i=0; i< cells.getSize(); ++i) {
 		if(i != 0) {
-			std::cout<< ", "; 		
+			std::cout<< "|"; 		
 		}
-		cells[i]->print();
+		cells[i]->print(delegate->getColumnWidth(i));
 	}
 	std::cout<< std::endl;
 }
@@ -67,6 +67,9 @@ void Row::setCell(int col, const char* newContent) {
 	cells[col] = makeCell(newContent);
 }
 
+int Row::getTotalCells() const {
+	return cells.getSize();
+}
 
 //----------------------- ROW STRING METHODS -------------------
 bool Row::readCellStr(const char* start, char* buffer, int* len) const {

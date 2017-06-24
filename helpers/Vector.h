@@ -8,7 +8,9 @@
 
 template<typename T>
 class Vector: public Container<T> {
-
+// ------------- A CONSTRUCTOR ------------------------
+public:
+	Vector(const int startCapacity = 5): Container<T>(startCapacity) {}
 // ------------- USER VECTOR METHODS ------------------
 public:
 	const T& get(int index) const {

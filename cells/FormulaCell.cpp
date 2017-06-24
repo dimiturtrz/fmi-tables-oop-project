@@ -1,4 +1,5 @@
 #include<iostream>
+#include<iomanip>
 #include "FormulaCell.h"
 #include "../helpers/MyStrings.h"
 
@@ -21,7 +22,7 @@ Cell* FormulaCell::clone() {
 	return new FormulaCell(*this);
 }
 
-double FormulaCell::evaluate() {
+double FormulaCell::evaluate() const {
 	double op1 = tableDelegate->getCell(row1 - 1, col1 - 1)->evaluate();
 	double op2 = tableDelegate->getCell(row2 - 1, col2 - 1)->evaluate();
 	switch(sign) {
@@ -39,7 +40,7 @@ double FormulaCell::evaluate() {
 	}
 }
 
-void FormulaCell::writeToStream(std::fstream& stream) {
+void FormulaCell::writeToStream(std::fstream& stream) const {
 	double op2 = tableDelegate->getCell(row2 - 1, col2 - 1)->evaluate();
 	if(sign == '/' && op2 == 0) {
 		stream<< "ERROR";
@@ -48,12 +49,12 @@ void FormulaCell::writeToStream(std::fstream& stream) {
 	}
 }
 
-void FormulaCell::print() {
+void FormulaCell::print(int width) const {
 	double op2 = tableDelegate->getCell(row2 - 1, col2 - 1)->evaluate();
 	if(sign == '/' && op2 == 0) {
 		std::cout<< "ERROR";
 	} else {
-		std::cout<< evaluate();
+		std::cout<< std::setw(width)<< evaluate();
 	}
 }
 

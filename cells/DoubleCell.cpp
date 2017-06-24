@@ -30,6 +30,6 @@ Cell* DoubleCell::clone() {
 	return new DoubleCell(*this);
 }
 
-double DoubleCell::evaluate() {
+double DoubleCell::evaluate() const {
 	return doubleVal;
 }
