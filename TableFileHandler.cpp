@@ -44,7 +44,7 @@ bool TableFileHandler::saveas(const char* path) {
 	}
 	writeTableToStream(newFile);
 	newFile.close();
-	std::cout<< "table successfully(maybe) saved to "<< path<< std::endl;
+	std::cout<< "table saved to "<< path<< std::endl;
 	return true;
 }
 
@@ -63,12 +63,12 @@ void TableFileHandler::edit(const char* arguments) {
 	int row = 0, col = 0;
 	int endOne = 0, endTwo = 0;
 	if(!readGenericInt(arguments, ' ', row, &endOne) || !readGenericInt(arguments + endOne, ' ', col, &endTwo) && row >= 0 && col >= 0) {
-		std::cout<< "wrong input form (it is not that complicated)"<< std::endl;
+		std::cout<< "wrong input form"<< std::endl;
 	}
 	for(; arguments[endOne + endTwo] == ' '; ++endTwo);
 	const char* newContent = arguments + endOne + endTwo;
 	table.edit(row - 1, col - 1, newContent);
-	std::cout<< "the edit function reached it's end without any runtime errors"<< std::endl;
+	std::cout<< "row editted"<< std::endl;
 }
 
 // -------------------- TABLE HANDLER METHODS ----------------

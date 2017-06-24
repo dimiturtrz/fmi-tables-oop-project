@@ -15,7 +15,7 @@ bool BaseFileHandler::open(const char* path) {
 	currFilePath = new char[strlen(path)];
 	strcpy(currFilePath, path);
 	fileOpened = true;
-	std::cout<< "file did not fail opening"<< std::endl;
+	std::cout<< "file opened"<< std::endl;
 	return true;
 }
 
